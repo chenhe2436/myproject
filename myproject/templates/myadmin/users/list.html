@@ -1,0 +1,159 @@
+{% extends 'myadmin/public/base.html' %}
+
+{% block title %}
+
+<title>会员列表</title>
+{% endblock %}
+{% block header %}
+<div class="row">
+	<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+		<div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 会员列表 <small>admin-list</small></div>
+		<p class="page-header-description">会员信息</p>
+	</div>
+	<div class="am-u-lg-3 tpl-index-settings-button">
+		<button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block con %}
+
+<div class="row-content am-cf" style="margin:0;padding: 0">
+	<div class="row">
+		<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+			<div class="widget am-cf">
+				
+				<div class="widget-body  am-fr">
+
+					<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+						<div class="am-form-group">
+							<a id="asc" href="{% url 'myadmin_users_list' %}?uid=id&type={{ request.GET.type }}&keywords={{ request.GET.keywords }}" >
+							正序排列
+							<i class="am-icon-sort-amount-asc sidebar-nav-link-logo"></i>
+							</a>
+							<a id="desc" href="{% url 'myadmin_users_list' %}?uid=-id&type={{ request.GET.type }}&keywords={{ request.GET.keywords }}" >
+							倒序排列
+							<i class="am-icon-sort-amount-desc sidebar-nav-link-logo"></i>
+							</a>
+						</div>
+					</div>
+
+
+
+
+					<form>
+						<div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+							<div class="am-form-group tpl-table-list-select">
+
+								<select name="type" data-am-selected="{btnSize: 'sm'}" style="display: none;">
+									<option value="all" {% if request.GET.type == 'all' %} selected {% endif %} >所有条件</option>
+									<option value="name" {% if request.GET.type == 'name' %} selected {% endif %} >Name</option>
+									<option value="age" {% if request.GET.type == 'age' %} selected {% endif %} >Age</option>
+									<option value="email" {% if request.GET.type == 'email' %} selected {% endif %} >Email</option>
+									<option value="phone" {% if request.GET.type == 'phone' %} selected {% endif %} >Phone</option>
+									<option value="sex" {% if request.GET.type == 'sex' %} selected {% endif %} >Sex</option>
+									<option value="status" {% if request.GET.type == 'status' %} selected {% endif %} >Status</option>
+								</select>
+							</div>
+						</div>
+						<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+							<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+								<input type="text" name="keywords" class="am-form-field " value="{{ request.GET.keywords }}">
+								<span class="am-input-group-btn">
+									<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search"></button>
+								</span>
+							</div>
+						</div>
+					</form>
+
+
+
+					<div class="am-u-sm-h12">
+						<table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Pic</th>
+									<th>Name</th>
+									<th>E-mail</th>
+									<th>Phone</th>
+									<th>Age</th>
+									<th>Sex</th>
+									<th>DateTime</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i in admin %}
+								<tr class="gradeX">
+									<td class="am-text-middle">
+										{{ i.id }}
+									</td>
+									<td class="am-text-middle">
+										<img src="{{ i.pic }}" class="tpl-table-line-img" alt="" style="width:100px;height: 100px;"></td>
+										<td class="am-text-middle">{{ i.name }}</td>
+
+										<td class="am-text-middle">{{ i.email }}</td>
+										<td class="am-text-middle">{{ i.phone }}</td>
+										<td class="am-text-middle">{{ i.age }}</td>
+										<td class="am-text-middle">{{ i.sex }}</td>
+										<td class="am-text-middle">{{ i.addtime|date:"Y-m-d H:i:s" }}</td>
+										<td class="am-text-middle">
+											{% if i.status == 0 %}
+											会员
+											{% else %}
+											异常
+											{% endif %}
+										</td>
+										<td class="am-text-middle">
+											<div class="tpl-table-black-operation">
+												<a href="{% url 'myadmin_users_update' %}?uid={{ i.id }}">
+													<i class="am-icon-pencil"></i> 更新
+												</a>
+												<a href="javascript:if(confirm('确实要删除该内容吗?'))location='{% url 'myadmin_users_delete' %}?uid={{ i.id }}'" class="tpl-table-black-operation-del" >
+													<i class="am-icon-trash"></i> 删除
+												</a>
+											</div>
+										</td>
+
+
+									</tr>
+									{% endfor %}
+
+
+									<!-- more data -->
+								</tbody>
+							</table>
+						</div>
+						<div class="am-u-lg-12 am-cf">
+
+							<div class="am-fr">
+								<ul class="am-pagination tpl-pagination">
+								<!-- <li class="am-disabled"><a href="#">«</a></li>
+								<li class="am-active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">»</a></li> -->
+								{% load pagetag %}
+								{% PageShow admin.paginator.num_pages request %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script type="text/javascript">
+	$('#asc').click(function(){
+		$.get('',{uid:'id'}function(data){
+
+		},'json')
+	})
+
+</script> -->
+{% endblock %}

@@ -1,0 +1,140 @@
+{% extends 'myadmin/public/base.html' %}
+
+{% block title %}
+
+<title>会员列表</title>
+{% endblock %}
+{% block header %}
+<div class="row">
+	<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+		<div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 会员列表 <small>admin-list</small></div>
+		<p class="page-header-description">会员信息</p>
+	</div>
+	<div class="am-u-lg-3 tpl-index-settings-button">
+		<button type="button" class="page-header-button"><span class="am-icon-paint-brush"></span> 设置</button>
+	</div>
+</div>
+{% endblock %}
+
+
+{% block con %}
+
+<div class="row-content am-cf" style="margin:0;padding: 0">
+	<div class="row">
+		<div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+			<div class="widget am-cf">
+				
+				<div class="widget-body  am-fr">
+
+					<div class="am-u-sm-12 am-u-md-6 am-u-lg-6">
+						<div class="am-form-group">
+							
+						</div>
+					</div>
+					<div class="am-u-sm-12 am-u-md-6 am-u-lg-3">
+						<div class="am-form-group tpl-table-list-select">
+							<div class="am-selected am-dropdown " id="am-selected-gcr13" data-am-dropdown="">  <button type="button" class="am-selected-btn am-btn am-dropdown-toggle am-btn-sm am-btn-default">    <span class="am-selected-status am-fl">排序</span>    <i class="am-selected-icon am-icon-caret-down"></i>  </button>  <div class="am-selected-content am-dropdown-content">    <h2 class="am-selected-header"><span class="am-icon-chevron-left">返回</span></h2>       <ul class="am-selected-list">                     <li class="am-checked" data-index="0" data-group="0" data-value="option1">         <span class="am-selected-text">ID</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="1" data-group="0" data-value="option2">         <span class="am-selected-text">姓名</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="2" data-group="0" data-value="option3">         <span class="am-selected-text">年龄</span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="3" data-group="0" data-value="option3">         <span class="am-selected-text"></span>         <i class="am-icon-check"></i></li>                                 <li class="" data-index="4" data-group="0" data-value="option3">         <span class="am-selected-text">性别</span>         <i class="am-icon-check"></i></li>
+							<li class="" data-index="4" data-group="0" data-value="option3">         <span class="am-selected-text">创建时间</span>         <i class="am-icon-check"></i></li>
+							<li class="" data-index="4" data-group="0" data-value="option3">         <span class="am-selected-text">状态</span>         <i class="am-icon-check"></i></li>                                            </ul>    <div class="am-selected-hint"></div>  </div></div>
+						</div>
+					</div>
+					<div class="am-u-sm-12 am-u-md-12 am-u-lg-3">
+						<div class="am-input-group am-input-group-sm tpl-form-border-form cl-p">
+							<input type="text" class="am-form-field ">
+							<span class="am-input-group-btn">
+								<button class="am-btn  am-btn-default am-btn-success tpl-table-list-field am-icon-search" type="button"></button>
+							</span>
+						</div>
+					</div>
+
+					<div class="am-u-sm-12">
+						<table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black ">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Pic</th>
+									<th>Name</th>
+									<th>E-mail</th>
+									<th>Phone</th>
+									<th>Age</th>
+									<th>Sex</th>
+									<th>DateTime</th>
+									<th>Status</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								{% for i in admin %}
+								<tr class="gradeX">
+									<td class="am-text-middle">
+										{{ i.id }}
+									</td>
+									<td class="am-text-middle">
+									<img src="{{ i.pic }}" class="tpl-table-line-img" alt="" style="width:100px;height: 100px;"></td>
+									<td class="am-text-middle">{{ i.name }}</td>
+									
+									<td class="am-text-middle">{{ i.email }}</td>
+									<td class="am-text-middle">{{ i.phone }}</td>
+									<td class="am-text-middle">{{ i.age }}</td>
+									<td class="am-text-middle">{{ i.sex }}</td>
+									<td class="am-text-middle">{{ i.addtime|date:"Y-m-d H:i:s" }}</td>
+									<td class="am-text-middle">
+									{% if i.status == 0 %}
+									会员
+									{% else %}
+									异常
+									{% endif %}
+									</td>
+									<td class="am-text-middle">
+										<div class="tpl-table-black-operation">
+											<a href="{% url 'myadmin_update' %}?uid={{ i.id }}">
+												<i class="am-icon-pencil"></i> 更新
+											</a>
+											<a href="javascript:if(confirm('确实要删除该内容吗?'))location='{% url 'myadmin_delete' %}?uid={{ i.id }}'" class="tpl-table-black-operation-del" >
+												<i class="am-icon-trash"></i> 删除
+											</a>
+										</div>
+									</td>
+									
+
+								</tr>
+								{% endfor %}
+								
+								
+								<!-- more data -->
+							</tbody>
+						</table>
+					</div>
+					<div class="am-u-lg-12 am-cf">
+
+						<div class="am-fr">
+							<ul class="am-pagination tpl-pagination">
+								<li class="am-disabled"><a href="#">«</a></li>
+								<li class="am-active"><a href="#">1</a></li>
+								<li><a href="#">2</a></li>
+								<li><a href="#">3</a></li>
+								<li><a href="#">4</a></li>
+								<li><a href="#">5</a></li>
+								<li><a href="#">»</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- <script type="text/javascript">
+	// $('#delete').click(function(){
+	// 	alert('确定删除?')
+	// })
+	function delete_confirm(e) 
+		{
+		    if (event.srcElement.outerText == "删除") 
+		    {
+		        event.returnValue = confirm("删除是不可恢复的，你确认要删除吗？");
+		    }
+		}
+	document.onclick = delete_confirm;
+</script> -->
+{% endblock %}
