@@ -22,7 +22,7 @@
 	
 	<div class="widget-body am-fr">
 
-		<form class="am-form tpl-form-line-form" action="{% url 'myadmin_types_add' %}" method="POST" enctype="multipart/form-data">
+		<form class="am-form tpl-form-line-form" action="{% url 'myadmin_goods_add' %}" method="POST" enctype="multipart/form-data">
 			{% csrf_token %}
 			<div class="am-form-group">
 				<label for="user-name" class="am-u-sm-3 am-form-label">
@@ -45,31 +45,31 @@
 				</div>
 			</div>
 			<div class="am-form-group">
-				<label for="user-name" class="am-u-sm-3 am-form-label">商品名 <span class="tpl-form-line-small-title">Name</span></label>
+				<label for="user-name" class="am-u-sm-3 am-form-label" required minlength="1">商品名 <span class="tpl-form-line-small-title">Name</span></label>
 				<div class="am-u-sm-9">
-					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "name" placeholder="请输入商品名" required minlength="2" >
-					<small>请填写商品名</small>
+					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "title" placeholder="请输入商品名" required minlength="2" >
+					<small>请填写商品名，2个字符以上</small>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="user-name" class="am-u-sm-3 am-form-label">商品描述 <span class="tpl-form-line-small-title">Descr</span></label>
 				<div class="am-u-sm-9">
 					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "descr" placeholder="请输入商品名描述" required minlength="2" >
-					<small>请填写商品描述</small>
+					<small>请填写商品描述，2个字符以上</small>
 				</div>
 			</div>
 			<div class="am-form-group">
 				<label for="user-name" class="am-u-sm-3 am-form-label">商品价格 <span class="tpl-form-line-small-title">Price</span></label>
 				<div class="am-u-sm-9">
-					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "price" placeholder="请输入商品价格" required minlength="2" >
-					<small>请填写商品价格</small>
+					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "price" placeholder="请输入商品价格" required minlength="2" maxlength="8"  onKeyUp="value=value.replace(/[^\d]/g,'')">
+					<small>请填写商品价格,2-8位数字</small>
 				</div>
 			</div>
 			
 			<div class="am-form-group">
 				<label for="user-name" class="am-u-sm-3 am-form-label">商品库存数量 <span class="tpl-form-line-small-title">Store</span></label>
 				<div class="am-u-sm-9">
-					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "store" placeholder="请输入商品库存数量" required minlength="2" >
+					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "store" placeholder="请输入商品库存数量" required minlength="2"  onKeyUp="value=value.replace(/[^\d]/g,'')">
 					<small>请填写商品库存数量</small>
 				</div>
 			</div>

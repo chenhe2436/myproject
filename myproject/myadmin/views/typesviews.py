@@ -154,9 +154,12 @@ def delete(request):
 	if num != 0:
 		return HttpResponse('<script>alert("当前类下有子类,不能删除");location.href="'+reverse('myadmin_types_list')+'"</script>')
 	else:
-
-		obj.delete()
-		return HttpResponse('<script>alert("删除成功");location.href="'+reverse('myadmin_types_list')+'"</script>')
+		goodsnum = obj.goods_set.all().count()
+		if goodsnum != 0:
+			return HttpResponse('<script>alert("该类下面有商品不能删除");location.href="'+reverse('myadmin_types_list')+'"</script>')
+		else:
+			obj.delete()
+			return HttpResponse('<script>alert("删除成功");location.href="'+reverse('myadmin_types_list')+'"</script>')
 
 def update(request):
 
@@ -164,8 +167,13 @@ def update(request):
 
 		uid = request.GET.get('uid',None)
 
-		obj = Types.objects.all()
-
+		obj = Types.objects.filter()
+		obj = obj.order_by('path')
+		# content = {'tnamelist':data}
+	
+		for i in obj:
+			num = i.path.count(',')-1
+			i.tname = '------' * num + i.tname
 		content = {'data':obj}
 
 		return render(request,'myadmin/types/update.html',content)
@@ -177,7 +185,7 @@ def update(request):
 		name = request.POST.get('name',None)
 
 		obj = Types.objects.get(id = uid)
-		print(obj.tname)
+		
 		obj.tname = name
 
 		obj.path = obj.path

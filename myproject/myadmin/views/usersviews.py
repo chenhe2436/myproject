@@ -172,7 +172,7 @@ def update(request):
 
 def uploads(request):
 
-	myfile = request.FILES.get('pic',None)
+	myfile = request.FILES.get('pics',None)
 
 	be = myfile.name.split('.').pop()
 

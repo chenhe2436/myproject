@@ -18,76 +18,108 @@
 
 
 {% block con %}
+<link rel="stylesheet" type="text/css" href="/static/myadmin/css/bootstrap-fileinput.css">
+<script type="text/javascript" src="/static/myadmin/js/bootstrap-fileinput.js"></script>
 
 <div class="widget am-cf" style="margin:0;padding: 0">
 	
 	<div class="widget-body am-fr">
 
-		<form class="am-form tpl-form-line-form" action="{% url 'myadmin_users_update' %}?uid={{ admin.id }}" method="POST" enctype="multipart/form-data">
-			{% csrf_token %}
+		<form class="am-form tpl-form-line-form" action="{% url 'myadmin_goods_update' %}" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<input type="hidden" name="id" value="{{ data.id }}">
+				<div class="am-form-group">
+					<label for="user-name" class="am-u-sm-3 am-form-label">
+						所属分类<span class="tpl-form-line-small-title">
 
-			<div class="am-form-group">
-				<label for="user-name" class="am-u-sm-3 am-form-label">用户名 <span class="tpl-form-line-small-title">Name</span></label>
-				<div class="am-u-sm-9">
-					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "name" placeholder="请输入姓名" required minlength="2"  value="{{ admin.name }}">
-					<small>请填写用户名2-5字左右</small>
-				</div>
-			</div>
+						Belong</span>
+					</label>
+					<div class="am-u-sm-9">
+						<select name="typeid" data-am-selected="{btnSize: 'sm'}">
+							{% for i in typedata %}
+								{% if i.id == data.typeid_id %}
+		                            <option selected value="{{ i.id }}">{{ i.tname }}</option>
 
+		                        {% else %}
+		                            <option value="{{ i.id }}">{{ i.tname }}</option>
 
-			<div class="am-form-group">
-				<label for="user-email" class="am-u-sm-3 am-form-label">邮箱 <span class="tpl-form-line-small-title">E-mail</span></label>
-				<div class="am-u-sm-9">
-					<input type="email" class="am-form-field tpl-form-no-bg" name = "email" placeholder="请输入邮箱"  value="{{ admin.email }}" required >
-					<small>标准邮箱格式xxx@xxx.com</small>
-				</div>
-			</div>
-			<div class="am-form-group">
-				<label for="user-email" class="am-u-sm-3 am-form-label">手机 <span class="tpl-form-line-small-title">Phone</span></label>
-				<div class="am-u-sm-9">
-					<input type="text" class="am-form-field tpl-form-no-bg" name = "phone" placeholder="请输入手机号"  value="{{ admin.phone }}" required minlength="11" maxlength="12" onKeyUp="value=value.replace(/[^\d]/g,'')">
-					<small>请输入手机号</small>
-				</div>
-			</div>
-			<div class="am-form-group">
-				<label for="user-email" class="am-u-sm-3 am-form-label">年龄 <span class="tpl-form-line-small-title">E-mail</span></label>
-				<div class="am-u-sm-9">
-					<input type="text" class="am-form-field tpl-form-no-bg" name = "age" placeholder="请输入年龄"  value="{{ admin.age }}" required minlength="1" maxlength="3" onKeyUp="value=value.replace(/[^\d]/g,'')">
-					<small>请输入年龄</small>
-				</div>
-			</div>
-			<div class="am-form-group">
-				<label for="user-email" class="am-u-sm-3 am-form-label">性别 <span class="tpl-form-line-small-title">E-mail</span></label>
-				<div class="am-u-sm-9">
-					<input type="radio"  name = "sex" value="男" {% if admin.sex == '男' %} checked {% endif %}>男 &nbsp;&nbsp;&nbsp;
-					<input type="radio"  name = "sex" value="女" {% if admin.sex == '女' %} checked {% endif %}>女
-					
-				</div>
-			</div>
-
-			<div class="am-form-group">
-				<label for="user-weibo" class="am-u-sm-3 am-form-label">头像 <span class="tpl-form-line-small-title">Images</span></label>
-				<div class="am-u-sm-9">
-					<div class="am-form-group am-form-file">
-						<div class="tpl-form-file-img">
-							<img src="{{ admin.pic }}" class="img-circle img-thumbnail img-responsive" id="avarimgs" style="width: 120px">
-						</div>
-						<button  class="am-btn am-btn-danger am-btn-sm">
-							<i class="am-icon-cloud-upload"></i> 上传头像</button>
-
-							<input type="file" name="pic" id="xdaTanFileImg" onchange="xmTanUploadImg(this)" accept="image/*">
-
-							<!-- <input id="doc-form-file" type="file" name = "pic"> -->
-						</div>
-
+		                        {% endif %}
+							{% endfor %}
+						</select>
 					</div>
 				</div>
+				<div class="am-form-group">
+					<label for="user-name" class="am-u-sm-3 am-form-label">新商品名 <span class="tpl-form-line-small-title">NewName</span></label>
+					<div class="am-u-sm-9">
+						<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "title" placeholder="{{ data.title }}" required minlength="2" >
+						<small>请填写商品名，2个字符以上</small>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="user-name" class="am-u-sm-3 am-form-label">商品描述 <span class="tpl-form-line-small-title">Descr</span></label>
+					<div class="am-u-sm-9">
+						<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "descr" placeholder="{{ data.descr }}" required minlength="2" >
+						<small>请填写商品描述，2个字符以上</small>
+					</div>
+				</div>
+				<div class="am-form-group">
+					<label for="user-name" class="am-u-sm-3 am-form-label">商品价格 <span class="tpl-form-line-small-title">Price</span></label>
+					<div class="am-u-sm-9">
+						<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "price" placeholder="{{ data.price }}" required minlength="2" maxlength="8"  onKeyUp="value=value.replace(/[^\d]/g,'')" >
+						<small>请填写商品价格,2-8位整数</small>
+					</div>
+				</div>
+				
+				<div class="am-form-group">
+					<label for="user-name" class="am-u-sm-3 am-form-label">商品库存数量 <span class="tpl-form-line-small-title">Store</span></label>
+					<div class="am-u-sm-9">
+						<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name = "store" placeholder="{{ data.store }}" required minlength="2"  onKeyUp="value=value.replace(/[^\d]/g,'')" >
+						<small>请填写商品库存数量（整数）</small>
+					</div>
+				</div>
+				<div class="am-form-group">
+		                    <label for="user-weibo" class="am-u-sm-3 am-form-label">上传商品图片 <span class="tpl-form-line-small-title">Upload</span></label>
+		                   <div class="am-u-sm-9 fileinput fileinput-new" data-provides="fileinput"  id="exampleInputUpload">
+		                       <div class="tpl-form-file-img fileinput-new thumbnail" >
+		                           <img id='picImg'  src="{{ data.pics }}" width="150" />
+		                       </div>
+		                       <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
+		                       <div>
+		                           <span class="btn btn-primary btn-file">
+		                               <span class="fileinput-new am-btn am-btn-danger am-btn-sm">选择文件</span>
+		                               <span class="fileinput-exists am-btn am-btn-danger am-btn-sm">换一张</span>
+		                               <input type="file" name="pic" id="picID" accept="image/gif,image/jpeg,image/x-png"/>
+		                           </span>
+		                           <a href="javascript:;" class=" fileinput-exists am-btn am-btn-danger am-btn-sm" data-dismiss="fileinput">移除</a>
+		                       </div>
+		                   </div>
+		                </div>
+				<div class="am-form-group">
+		                    <label for="user-name" class="am-u-sm-3 am-form-label">
+		                        商品详情<span class="tpl-form-line-small-title">
+								Details</span>
+		                    </label>
+		                    <div class="am-u-sm-9">
+		                        <link rel="stylesheet" type="text/css" href="/ueditor/UE/third-party/SyntaxHighlighter/shCoreDefault.css">
+		                        <script type="text/javascript" src="/ueditor/UE/third-party/SyntaxHighlighter/shCore.js"></script>
+		                        <script type="text/javascript" src="/ueditor/UE/ueditor.config.js"></script>
+		                        <script type="text/javascript" src="/ueditor/UE/ueditor.all.min.js"></script>
+		                        <script type="text/javascript" src="/ueditor/UE/lang/zh-cn/zh-cn.js"></script>
+
+
+		                        <script style="color:red" id="editor" name="info" type="text/plain" style="height:500px;">
+		                            
+		                        </script>
+		                        <script type="text/javascript">
+		                            var ue = UE.getEditor('editor');
+		                            SyntaxHighlighter.all();
+		                        </script>
+		                    </div>
+		                </div>
 
 				
-
 				<div class="am-form-group">
 					<div class="am-u-sm-9 am-u-sm-push-3">
-
 						<button  class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
 					</div>
 				</div>
