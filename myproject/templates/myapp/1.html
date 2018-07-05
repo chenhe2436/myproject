@@ -1,0 +1,106 @@
+
+title	varchar	255	0	0	0	0	0	0		0		utf8	utf8_general_ci		0	0
+descr	varchar	255	0	-1	0	0	0	0		0		utf8	utf8_general_ci		0	0
+info	longtext	0	0	-1	0	0	0	0		0		utf8	utf8_general_ci		0	0
+price	decimal	10	2	0	0	0	0	0		0					0	0
+pics	varchar	100	0	0	0	0	0	0		0		utf8	utf8_general_ci		0	0
+status	int	11	0	0	0	0	0	0		0					0	0
+store	int	11	0	0	0	0	0	0		0					0	0
+num	int	11	0	0	0	0	0	0		0					0	0
+clicknum	int	11	0	0	0	0	0	0		0					0	0
+addtime	datetime	6	0	0	0	0	0	0		0					0	0
+typeid_id	int	11	0	0	0	0	0	0		0					0	0
+
+
+
+	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(../images/2.jpg) no-repeat 0px 0px;
+	background:url(../images/2.jpg) no-repeat 0px 0px;
+
+<div class="products-breadcrumb">
+	<div class="container">
+		<ul>
+			<li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
+			<li>Sign In & Sign Up</li>
+		</ul>
+	</div>
+</div>
+
+{% block slider %}
+<div class="w3l_banner_nav_right">
+	<!-- login -->
+	<div class="w3_login">
+		<h3>登录和注册</h3>
+		<div class="w3_login_module">
+			<div class="module form-module">
+				<div class="toggle"><i class="fa fa-times fa-pencil"></i>
+					<div class="tooltip">点我切换</div>
+				</div>
+				<div class="form">
+					<h2>登录您的账户</h2>
+					<form action="{% url 'myapp_login' %}" method="post">
+						{% csrf_token %}
+						<input type="text" name="name" placeholder="请输入账号" required=" ">
+						<input type="password" name="password" placeholder="请输入密码" required=" ">
+						<div style="position: relative;">
+							<input type="text" name="vcode" required  placeholder="请输入验证码">
+							<img src="{% url 'myapp_vcode' %}" onclick="this.src='/myapp/vcode/?'+Math.random()" style="position: absolute;top:10px;right:10px">
+						</div>
+						<input type="submit" value="登录">
+					</form>
+				</div>
+				<div class="form">
+					<h2>注册您的账户</h2>
+					<form action="{% url 'myapp_register' %}" method="post">
+						{% csrf_token %}
+						<input class="regist_name" type="text" name="name" placeholder="请输入最小6位的用户名" required minlength="6">
+						<div class="warning" style="position: absolute;top:60px;left: 45px;width: 300px;">
+							<span></span>
+						</div>
+						<input type="password" name="password" placeholder="请输入最小6位的密码" required minlength="6">
+						<input class="regist_email" type="email" name="email" placeholder="请输入邮箱xxx@xxx.xx" required=" ">
+						<input type="text" name="phone" placeholder="请输入11位手机号" required minlength="11" maxlength="11" onKeyUp="value=value.replace(/[^\d]/g,'')">
+						<div style="position: relative;">
+							<input type="text" name="vcode" required  placeholder="请输入验证码">
+							<img src="{% url 'myapp_vcode' %}" onclick="this.src='/myapp/vcode/?'+Math.random()" style="position: absolute;top:10px;right:10px">
+						</div>
+						<input type="submit" value="注册">
+					</form>
+					<script type="text/javascript">
+						
+						$('.regist_name').bind('input porpertychange',function(){
+							$('.warning').show()
+							var v = $(this).val()
+							$.get("{% url 'myapp_testname' %}",{'con':v},function(data){
+								
+								$('.warning span').html(data['msg'])
+
+							})
+							$('.regist_name').blur(function(){
+								$('.warning').hide()
+							})
+						})
+
+
+					</script>
+				</div>
+
+			</div>
+			<script>
+				$('.toggle').click(function(){
+				  // Switches the Icon
+				  $(this).children('i').toggleClass('fa-pencil');
+				  // Switches the forms  
+				  $('.form').animate({
+				  	height: "toggle",
+				  	'padding-top': 'toggle',
+				  	'padding-bottom': 'toggle',
+				  	opacity: "toggle"
+				  }, "slow");
+				});
+			</script>
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -2,6 +2,8 @@ from django.shortcuts import render,reverse
 from django.http import HttpResponse,JsonResponse
 from .. models import admin
 import os
+from django.contrib.auth.hashers import make_password, check_password
+
 # Create your views here.
 
 # 定义首页视图函数
@@ -20,6 +22,40 @@ def index(request):
 	content = {'admin':obj}
 	# 返回list页面
 	return render(request,'myadmin/users/list.html',content)
+
+
+def login(request):
+	if request.method == 'GET':
+
+		return render(request,'myadmin/login.html')
+	if request.method == 'POST':
+
+		name = request.POST.get('username',None)
+		password = request.POST.get('password',None)
+	
+		try:
+			obj = admin.objects.get(name = name)
+			if obj.status == 0:
+				return HttpResponse('<script>alert("您没有权限进入后台管理！");history.back(-1)</script>')
+
+			res = check_password(password,obj.password)
+		
+			if res:
+
+				request.session['AdminLogin'] = {'uid':obj.id,'username':obj.name}
+
+				return HttpResponse('<script>alert("登录成功");location.href="'+reverse('myadmin_users_index')+'"</script>')
+
+		except:
+
+			return HttpResponse('<script>alert("用户名或密码错误");history.back(-1)</script>')
+
+		
+def logout(request):
+
+	request.session['AdminLogin'] = {}
+
+	return HttpResponse('<script>alert("退出成功");location.href="/myadmin/"</script>')
 
 # 添加视图函数
 def add(request):
@@ -46,9 +82,11 @@ def add(request):
 				return HttpResponse('<script>alert("上传的文件类型不符合要求");location.href="'+reverse('myadmin_users_add')+'"</script>')
 		# 如果没有图片上传,即pic值为空
 		if not data['pic']:
+
 			# 设置默认图片路径
 			data['pic'] = '/static/myadmin/pic/user03.png'
 		# 添加信息进数据库
+		data['status'] = 1
 		obj = admin.objects.create(**data)
 		# 添加成功返回信息
 		return HttpResponse('<script>alert("添加成功");location.href="'+reverse('myadmin_users_list')+'"</script>')
@@ -101,10 +139,13 @@ def list(request):
 				keywords = 1
 	        # 按照 status 搜索
 				obj = admin.objects.filter(status__contains=keywords)
-			if keywords == '会员':
+			elif keywords == '会员':
 				keywords = 0
 	        # 按照 status 搜索
 				obj = admin.objects.filter(status__contains=keywords)
+			else:
+				return HttpResponse('<script>alert("输入信息有误，请重试");history.back(-1)</script>')
+
 
 	else:
         # 获取所有的用户数据
@@ -149,7 +190,6 @@ def update(request):
 
 	elif request.method == 'POST':
 
-		print(12345678946411111)
 		if request.FILES.get('pic',None):
             # 判断是否使用的默认图
 			if obj.pic:
@@ -165,6 +205,7 @@ def update(request):
 		obj.age = request.POST['age']
 		obj.sex = request.POST['sex']
 		obj.phone = request.POST['phone']
+		obj.status = request.POST['status']
 		obj.save()
 
 		return HttpResponse('<script>alert("更新成功");location.href="'+reverse('myadmin_users_list')+'"</script>')

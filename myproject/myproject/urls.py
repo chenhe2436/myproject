@@ -19,5 +19,7 @@ urlpatterns = [
     url(r'^ueditor/', include('ueditor.urls')),
     
     url(r'^myadmin/', include('myadmin.urls')),
+    url(r'^myapp/', include('myapp.urls')),
+    url(r'^',include('myhome.urls')),
     # url(r'^', include('myapp.users.urls')),
 ]

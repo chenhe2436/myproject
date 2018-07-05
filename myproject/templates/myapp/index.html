@@ -1,0 +1,196 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+<title>首页</title>
+{% endblock %}
+
+{% block banner %}
+<div class="w3l_banner_nav_left">
+	<nav class="navbar nav_bottom">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header nav_2">
+			<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div> 
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+			<ul class="nav navbar-nav nav_1">
+				{% for i in data %}
+				<li class="dropdown mega-dropdown active">
+					{% if i.two.count %}
+					<a href="{% url 'myapp_list' i.id %}" class="dropdown-toggle" data-toggle="dropdown">{{ i.tname }}<span class="caret"></span></a>
+
+					<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+						<div class="w3ls_vegetables">
+							<ul>	
+								{% for j in i.two %}
+								<li><a href="{% url 'myapp_list' j.id %}">{{ j.tname }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>                  
+					</div>
+					
+					{% else %}
+					<li><a href="{% url 'myapp_list' i.id %}">{{ i.tname }}</a></li>	
+					{% endif %}			
+				</li>
+				{% endfor %}
+				
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+</div>
+{% endblock %}
+{% block slider %}
+<div class="w3l_banner_nav_right">
+	<section class="slider">
+		<div class="flexslider">
+			<ul class="slides">
+				<li>
+					<div class="w3l_banner_nav_right_banner" style="background: url(/static/myapp/images/1.jpg) no-repeat 0px 0px;">
+						<h3>保证您<span>营养</span> 均衡</h3>
+						<div class="more">
+							<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="立即购买">立即购买</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="w3l_banner_nav_right_banner1" style="background: url(/static/myapp/images/1.jpg) no-repeat 0px 0px;">
+						<h3>让您的生活 <span>充满</span> 味道</h3>
+						<div class="more">
+							<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="立即购买">立即购买</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div class="w3l_banner_nav_right_banner2" style="background: url(/static/myapp/images/1.jpg) no-repeat 0px 0px;">
+						<h3>最高 <i>50%</i> 优惠</h3>
+						<div class="more">
+							<a href="products.html" class="button--saqui button--round-l button--text-thick" data-text="立即购买">立即购买</a>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</section>
+	<!-- flexSlider -->
+	<link rel="stylesheet" href="/static/myapp/css/flexslider.css" type="text/css" media="screen" property="" />
+	<script defer src="/static/myapp/js/jquery.flexslider.js"></script>
+	<script type="text/javascript">
+		$(window).load(function(){
+			$('.flexslider').flexslider({
+				animation: "slide",
+				start: function(slider){
+					$('body').removeClass('loading');
+				}
+			});
+		});
+	</script>
+	<!-- //flexSlider -->
+</div>
+<div class="clearfix"></div>
+{% endblock %}
+
+{% block banner_bottom %}
+<div class="container w3ls_w3l_banner_nav_right_grid" >
+	<div class="w3l_banner_nav_right_banner3_btm w3ls_w3l_banner_nav_right_grid1" style="margin: 0px;">
+		<h3>Popular Brands</h3>
+		<h6>food</h6>
+		<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
+			<div class="view view-tenth">
+				<img src="/static/myapp/images/13.jpg" alt=" " class="img-responsive" />
+				<div class="mask">
+					<h4>Grocery Store</h4>
+					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+				</div>
+			</div>
+			<h4>Utensils</h4>
+			<ol>
+				<li>sunt in culpa qui officia</li>
+				<li>commodo consequat</li>
+				<li>sed do eiusmod tempor incididunt</li>
+			</ol>
+		</div>
+		<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
+			<div class="view view-tenth">
+				<img src="/static/myapp/images/14.jpg" alt=" " class="img-responsive" />
+				<div class="mask">
+					<h4>Grocery Store</h4>
+					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+				</div>
+			</div>
+			<h4>Hair Care</h4>
+			<ol>
+				<li>enim ipsam voluptatem officia</li>
+				<li>tempora incidunt ut labore et</li>
+				<li>vel eum iure reprehenderit</li>
+			</ol>
+		</div>
+		<div class="col-md-4 w3l_banner_nav_right_banner3_btml">
+			<div class="view view-tenth">
+				<img src="/static/myapp/images/15.jpg" alt=" " class="img-responsive" />
+				<div class="mask">
+					<h4>Grocery Store</h4>
+					<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p>
+				</div>
+			</div>
+			<h4>Cookies</h4>
+			<ol>
+				<li>dolorem eum fugiat voluptas</li>
+				<li>ut aliquid ex ea commodi</li>
+				<li>magnam aliquam quaerat</li>
+			</ol>
+		</div>
+		<div class="clearfix"> </div>
+	</div>
+	<div class="w3ls_w3l_banner_nav_right_grid">
+		<h3>大众喜欢</h3>
+		
+		{% for i in erdata %}
+		{% if i.goods %}
+		<div class="w3ls_w3l_banner_nav_right_grid1">
+			<h6>{{ i.tname }}</h6>
+			{% for j in i.goods %}
+			
+
+			<div class="col-md-3 w3ls_w3l_banner_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+
+
+						<div class="agile_top_brand_left_grid1">
+							
+							
+							<div class="snipcart-item block">
+								<div class="snipcart-thumb">
+									<a href="{% url 'myapp_info' i.id %}"><img src="{{ j.pics }}" style="width: 250px;height: 250px" alt=" " class="img-responsive" /></a>
+									<p>{{ i.title }}</p>
+									<h4>{{ i.price }} </h4>
+								</div>
+								<div class="snipcart-details">
+									<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="5" data-name="Knorr instant soup" data-summary="summary 5" data-price="3.00" data-quantity="1" data-image="images/5.png" >加入购物车</button>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			<div class="clearfix"> </div>	
+		</div>
+		{% endif %}
+		{% endfor %}
+
+	</div>
+</div>
+{% endblock %}
+
+{% block brands %}
+
+{% endblock %}

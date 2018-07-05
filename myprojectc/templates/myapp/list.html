@@ -1,0 +1,102 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+<title>列表页</title>
+{% endblock %}
+
+{% block banner %}
+<div class="w3l_banner_nav_left">
+	<nav class="navbar nav_bottom">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header nav_2">
+			<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div> 
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+			<ul class="nav navbar-nav nav_1">
+				{% for i in data %}
+				<li class="dropdown mega-dropdown active">
+					{% if i.two.count %}
+					<a href="{% url 'myapp_list' i.id %}" class="dropdown-toggle" data-toggle="dropdown">{{ i.tname }}<span class="caret"></span></a>
+
+					<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+						<div class="w3ls_vegetables">
+							<ul>	
+								{% for j in i.two %}
+								<li><a href="{% url 'myapp_list' j.id %}">{{ j.tname }}</a></li>
+								{% endfor %}
+							</ul>
+						</div>                  
+					</div>
+					
+					{% else %}
+					<li><a href="{% url 'myapp_list' i.id %}">{{ i.tname }}</a></li>	
+					{% endif %}			
+				</li>
+				{% endfor %}
+				
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+</div>
+{% endblock %}
+{% block slider %}
+<div class="w3l_banner_nav_right">
+	<div class="w3l_banner_nav_right_banner3">
+		<h3>新品上市，欢迎选购<span class="blink_me"></span></h3>
+	</div>
+	
+	<div class="w3ls_w3l_banner_nav_right_grid">
+		<h3>{{ types.tname }}</h3>
+		<div class="w3ls_w3l_banner_nav_right_grid1">
+			
+			{% for i in obj %}
+			<div class="col-md-3 w3ls_w3l_banner_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
+						<div class="agile_top_brand_left_grid_pos">
+							<img src="/static/myapp/images/offer.png" alt=" " class="img-responsive" />
+						</div>
+						<div class="agile_top_brand_left_grid1">
+							<figure>
+								<div class="snipcart-item block">
+									<div class="snipcart-thumb">
+										<a href="/static/myapp/single.html"><img style="width: 150px;height: 150px" src="{{ i.pics }}" alt=" " class="img-responsive" /></a>
+										<p>{{ i.title }}</p>
+										
+										<h4>{{ i.price }} </h4>
+									</div>
+									<div class="snipcart-details">
+										<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="{{ i.id }}" data-name="{{ i.title }}" data-summary="summary 5" data-price="{{ i.price }}" data-quantity="1" data-image="{{ i.pics }}">加入购物车</button> 
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+			
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+<div class="clearfix"></div>
+</div>
+{% endblock %}
+{% block banner_bottom %}
+<div class="wthree_banner_bottom_left_grid_sub">
+</div>
+
+<div class="clearfix"> </div>
+{% endblock %}
+{% block brands %}
+
+{% endblock %}
+
+

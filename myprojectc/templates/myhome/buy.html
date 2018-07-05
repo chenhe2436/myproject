@@ -1,0 +1,90 @@
+{% extends 'myhome/base.html' %}
+{% block title %}
+<title付款成功</title>
+{% endblock %}
+{% block css %}
+<link href="/static/myhome/css/cartstyle.css" rel="stylesheet" type="text/css" />
+<link href="/static/myhome/css/sustyle.css" rel="stylesheet" type="text/css" />
+
+
+{% endblock %}
+
+
+{% block js %}
+<script type="text/javascript" src="/static/myhome/js/jquery.js"></script>
+{% endblock %}
+
+{% block  con %}
+
+<span>付款金额：￥{{ totalprice }}</span>
+
+<div style="border: 1px solid grey">
+
+    <input type="radio" name="pay" ><span style="margin:20px;font-size: 20px;">花呗支付</span>
+    <br>
+</div>
+<br>
+<div style="border: 1px solid grey">
+    <input type="radio" name="pay"><span style="font-size: 20px;"> 网上银行</span>
+    <br>
+</div>
+
+<hr>
+<button style="background: none;">其他付款方式</button>
+<button style="background: none;">添加快捷/网银支付</button>
+<br>
+
+<br>
+
+
+<small>安全设置检测成功，无需短信校验。</small><br>
+
+<div>
+   <span>
+       支付宝支付密码：  
+   </span><br>
+   <input type="text" name="password"><small><a href="">忘记密码？</a></small><br>
+   <small>请输入6位数字支付密码</small><br>
+
+  
+
+
+
+   <button style="width: 100px;height: 30px;font-size: 20px">    <a class="btn-go"  href="{% url 'myhome_success' %}?orderid={{ orderid }}" >确认付款</a></button>
+
+</div>
+
+
+
+
+
+<div class="footer ">
+    <div class="footer-hd ">
+        <p>
+            <a href="# ">恒望科技</a>
+            <b>|</b>
+            <a href="# ">商城首页</a>
+            <b>|</b>
+            <a href="# ">支付宝</a>
+            <b>|</b>
+            <a href="# ">物流</a>
+        </p>
+    </div>
+    <div class="footer-bd ">
+        <p>
+            <a href="# ">关于恒望</a>
+            <a href="# ">合作伙伴</a>
+            <a href="# ">联系我们</a>
+            <a href="# ">网站地图</a>
+            <em>© 2015-2025 Hengwang.com 版权所有</em>
+        </p>
+    </div>
+</div>
+
+</div>
+
+{% endblock %}
+
+
+
+

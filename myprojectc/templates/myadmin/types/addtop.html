@@ -1,0 +1,44 @@
+{% extends 'myadmin/public/base.html' %}
+
+{% block title %}
+
+<title>分类添加</title>
+{% endblock %}
+{% block header %}
+<div class="row">
+	<div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+		<div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 分类添加 <small>TopType-add</small></div>
+		<p class="page-header-description">增加顶级分类信息</p>
+	</div>
+
+</div>
+{% endblock %}
+
+
+{% block con %}
+
+<div class="widget am-cf" style="margin:0;padding: 0">
+	
+	<div class="widget-body am-fr">
+
+		<form class="am-form tpl-form-line-form" action="{% url 'myadmin_types_addtop' %}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			<input type="hidden" name="pid" value="0">
+			<div class="am-form-group">
+				<label for="user-name" class="am-u-sm-3 am-form-label">顶级分类名 <span class="tpl-form-line-small-title">Name</span></label>
+				<div class="am-u-sm-9">
+					<input type="text" class="tpl-form-input am-form-field tpl-form-no-bg" id="user-name" name="name" placeholder="请输入顶级分类名" required minlength="2" >
+					<small>请填写顶级分类名</small>
+				</div>
+			</div>
+			<div class="am-form-group">
+				<div class="am-u-sm-9 am-u-sm-push-3">
+					<button  class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+
+{% endblock %}

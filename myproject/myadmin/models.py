@@ -37,3 +37,32 @@ class Goods(models.Model):
     clicknum = models.IntegerField(default=0)
     addtime = models.DateTimeField(auto_now_add=True)
 
+
+class Address(models.Model):
+	uid =  models.ForeignKey(to="admin", to_field="id")
+	name = models.CharField(max_length=50)
+	phone = models.CharField(max_length=11)
+	address = models.CharField(max_length=20)
+	xiangxi = models.CharField(max_length=50)
+	status = models.IntegerField(default=0)
+
+class Orders(models.Model):
+	uid = models.ForeignKey(to="admin", to_field="id")
+	addressid = models.ForeignKey(to="Address", to_field="id")
+	totalprice = models.FloatField()
+	totalnum = models.IntegerField()
+	status = models.IntegerField(default=0)
+	addtime = models.DateTimeField(auto_now_add=True,null=True)
+class OrderInfo(models.Model):
+	orderid = models.ForeignKey(to="Orders", to_field="id")
+	gid = models.ForeignKey(to="Goods", to_field="id")
+	num = models.IntegerField()
+        
+
+class Citys(models.Model):
+	name = models.CharField(max_length = 50)
+	level = models.IntegerField()
+	upid = models.IntegerField()
+
+	class Meta():
+		db_table = 'district'

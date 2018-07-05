@@ -1,0 +1,260 @@
+{% extends 'myapp/base.html' %}
+
+{% block title %}
+<title>列表页</title>
+{% endblock %}
+
+{% block banner %}
+<div class="w3l_banner_nav_left">
+	<nav class="navbar nav_bottom">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header nav_2">
+			<button type="button" class="navbar-toggle collapsed navbar-toggle1" data-toggle="collapse" data-target="#bs-megadropdown-tabs">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+		</div> 
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
+			<ul class="nav navbar-nav nav_1">
+				<li><a href="products.html">膨化食品</a></li>
+				<li><a href="household.html">居家用品</a></li>
+				<li class="dropdown mega-dropdown active">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">时令果蔬<span class="caret"></span></a>				
+					<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+						<div class="w3ls_vegetables">
+							<ul>	
+								<li><a href="vegetables.html">蔬菜</a></li>
+								<li><a href="vegetables.html">水果</a></li>
+							</ul>
+						</div>                  
+					</div>				
+				</li>
+				<li><a href="kitchen.html">厨卫用品</a></li>
+				<li><a href="short-codes.html">宠物食物</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">饮料<span class="caret"></span></a>
+					<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+						<div class="w3ls_vegetables">
+							<ul>
+								<li><a href="drinks.html">软饮料</a></li>
+								<li><a href="drinks.html">果汁</a></li>
+							</ul>
+						</div>                  
+					</div>	
+				</li>
+				<li><a href="pet.html">服装</a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">速冻食品<span class="caret"></span></a>
+					<div class="dropdown-menu mega-dropdown-menu w3ls_vegetables_menu">
+						<div class="w3ls_vegetables">
+							<ul>
+								<li><a href="frozen.html">冰激凌</a></li>
+								<li><a href="frozen.html">冰水</a></li>
+							</ul>
+						</div>                  
+					</div>	
+				</li>
+				<li><a href="bread.html">数码 & 家电</a></li>
+			</ul>
+		</div><!-- /.navbar-collapse -->
+	</nav>
+</div>
+{% endblock %}
+{% block slider %}
+<div class="w3l_banner_nav_right">
+	<div class="w3l_banner_nav_right_banner3">
+		<h3>Best Deals For New Products<span class="blink_me"></span></h3>
+	</div>
+	<div class="agileinfo_single">
+		<h5>charminar pulao basmati rice 5 kg</h5>
+		<div class="col-md-4 agileinfo_single_left">
+			<img id="example" src="/static/myapp/images/76.png" alt=" " class="img-responsive" />
+		</div>
+		<div class="col-md-8 agileinfo_single_right">
+			<div class="rating1">
+				<span class="starRating">
+					<input id="rating5" type="radio" name="rating" value="5">
+					<label for="rating5">5</label>
+					<input id="rating4" type="radio" name="rating" value="4">
+					<label for="rating4">4</label>
+					<input id="rating3" type="radio" name="rating" value="3" checked>
+					<label for="rating3">3</label>
+					<input id="rating2" type="radio" name="rating" value="2">
+					<label for="rating2">2</label>
+					<input id="rating1" type="radio" name="rating" value="1">
+					<label for="rating1">1</label>
+				</span>
+			</div>
+			<div class="w3agile_description">
+				<h4>Description :</h4>
+				<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui 
+					officia deserunt mollit anim id est laborum.Duis aute irure dolor in 
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla 
+					pariatur.</p>
+				</div>
+				<div class="snipcart-item block">
+					<div class="snipcart-thumb agileinfo_single_right_snipcart">
+						<h4>$21.00 <span>$25.00</span></h4>
+					</div>
+					<div class="snipcart-details agileinfo_single_right_details">
+						<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="76" data-name="Pulao basmati rice" data-summary="summary 76" data-price="21.00" data-quantity="1" data-image="images/76.png">Add to Cart</button>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+</div>
+{% endblock %}
+{% block banner_bottom %}
+<script>
+	$(function(){
+		$('#example').okzoom({
+			width: 150,
+			height: 150,
+			border: "1px solid black",
+			shadow: "0 0 5px #000"
+		});
+	});
+</script>
+<div class="wthree_banner_bottom_left_grid_sub">
+</div>
+<div class="wthree_banner_bottom_left_grid_sub1">
+	<div class="col-md-4 wthree_banner_bottom_left">
+		<div class="wthree_banner_bottom_left_grid">
+			<img src="/static/myapp/images/4.jpg" alt=" " class="img-responsive" />
+			<div class="wthree_banner_bottom_left_grid_pos">
+				<h4>Discount Offer <span>25%</span></h4>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 wthree_banner_bottom_left">
+		<div class="wthree_banner_bottom_left_grid">
+			<img src="/static/myapp/images/5.jpg" alt=" " class="img-responsive" />
+			<div class="wthree_banner_btm_pos">
+				<h3>introducing <span>best store</span> for <i>groceries</i></h3>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4 wthree_banner_bottom_left">
+		<div class="wthree_banner_bottom_left_grid">
+			<img src="/static/myapp/images/6.jpg" alt=" " class="img-responsive" />
+			<div class="wthree_banner_btm_pos1">
+				<h3>Save <span>Upto</span> $10</h3>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"> </div>
+</div>
+<div class="clearfix"> </div>
+{% endblock %}
+{% block brands %}
+<div class="top-brands">
+	<div class="container">
+		<h3>Hot Offers</h3>
+
+		<div class="agile_top_brands_grids">
+			<div class="col-md-3 top_brand_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid">
+						<div class="tag"><img src="/static/myapp/images/tag.png" alt=" " class="img-responsive" /></div>
+						<div class="agile_top_brand_left_grid1">
+							<figure>
+								<div class="snipcart-item block" >
+									<div class="snipcart-thumb">
+										<a href="single.html"><img title=" " alt=" " src="/static/myapp/images/1.png" /></a>		
+										<p>fortune sunflower oil</p>
+										
+										<h4>$7.99 <span>$10.00</span></h4>
+									</div>
+									<div class="snipcart-details top_brand_home_details">
+										<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="1" data-name="Fortune sunflower oil" data-summary="summary 1" data-price="7.99" data-quantity="1" data-image="/static/myapp/images/1.png">加入购物车</button>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 top_brand_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid">
+						<div class="agile_top_brand_left_grid1">
+							<figure>
+								<div class="snipcart-item block" >
+									<div class="snipcart-thumb">
+										<a href="single.html"><img title=" " alt=" " src="/static/myapp/images/3.png" /></a>		
+										<p>basmati rise (5 Kg)</p>
+										<h4>$11.99 <span>$15.00</span></h4>
+									</div>
+									<div class="snipcart-details top_brand_home_details">
+										<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="2" data-name="Indian gate basmati rise" data-summary="summary 2" data-price="11.99" data-quantity="1" data-image="/static/myapp/images/3.png">Add to Cart</button>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 top_brand_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid">
+						<div class="agile_top_brand_left_grid_pos">
+							<img src="/static/myapp/images/offer.png" alt=" " class="img-responsive" />
+						</div>
+						<div class="agile_top_brand_left_grid1">
+							<figure>
+								<div class="snipcart-item block">
+									<div class="snipcart-thumb">
+										<a href="single.html"><img src="/static/myapp/images/2.png" alt=" " class="img-responsive" /></a>
+										<p>Pepsi soft drink (2 Ltr)</p>
+										<h4>$8.00 <span>$10.00</span></h4>
+									</div>
+									<div class="snipcart-details top_brand_home_details">
+										<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="3" data-name="Pepsi soft drink bottles" data-summary="summary 3" data-price="8.00" data-quantity="1" data-image="/static/myapp/images/2.png">Add to Cart</button>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-3 top_brand_left">
+				<div class="hover14 column">
+					<div class="agile_top_brand_left_grid">
+						<div class="agile_top_brand_left_grid_pos">
+							<img src="/static/myapp/images/offer.png" alt=" " class="img-responsive" />
+						</div>
+						<div class="agile_top_brand_left_grid1">
+							<figure>
+								<div class="snipcart-item block">
+									<div class="snipcart-thumb">
+										<a href="single.html"><img src="/static/myapp/images/4.png" alt=" " class="img-responsive" /></a>
+										<p>dogs food (4 Kg)</p>
+										<h4>$9.00 <span>$11.00</span></h4>
+									</div>
+									<div class="snipcart-details top_brand_home_details">
+										<button class="btn btn-danger my-cart-btn hvr-sweep-to-right" data-id="4" data-name="Dogs food" data-summary="summary 4" data-price="9.00" data-quantity="1" data-image="/static/myapp/images/4.png">Add to Cart</button>
+									</div>
+								</div>
+							</figure>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+
+
+<!-- //banner -->
+<!-- brands -->
+
+
